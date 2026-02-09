@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Pozivnica na krštenje</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="splash">
+    <img src="ilutracija crkva LEFT2.png" class="doorImage doorImageLEFT" alt="">
+    <img src="ilustracija crkva RIGHT2.png" class="doorImage doorImageRIGHT" alt="">
+</div>
+
+<div class="form-container">
+    <main class="content">
+        <section class="invitation-text">
+            <p>
+                S radošću vas pozivamo da svojim dolaskom uveličate<br>
+                sveto krštenje našeg <strong>Viktora</strong>,<br><br>
+
+                koje će se održati <strong>11.04. u 12 sati</strong><br>
+                u crkvi <strong>Sv. Ivana Krstitelja (Nova Ves 64)</strong>.<br><br>
+
+                Nakon obreda, veselimo se zajedničkom druženju<br>
+                u restoranu <strong>C6 (Capraška ulica 6c)</strong><br><br>
+
+                Ljubazno Vas molimo da svoj dolazak potvrdite do <strong>15.03.</strong><br><br>
+
+                Radujemo se vašem dolasku!<br>
+                <strong>Nika i Adrian</strong>
+            </p>
+        </section>
+
+        <section class="rsvp">
+            <h2>Potvrda dolaska</h2>
+            <form>
+                <label>
+                    Ime i prezime *
+                    <input type="text" required>
+                </label>
+
+                <label>
+                    Broj osoba koje dolaze *
+                    <input type="number" min="1" required>
+                </label>
+
+                <label>
+                    Poruka (opcionalno)
+                    <textarea rows="4"></textarea>
+                </label>
+
+                <button type="submit">Potvrdi dolazak</button>
+            </form>
+        </section>
+    </main>
+</div>
+
+    <script src="doorAnimation.js"></script>
+</body>
+</html>
