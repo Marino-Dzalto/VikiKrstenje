@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap');
 
 /* ──────────────────────────────────────────────── */
-/* Reset & base                                        */
+/* Reset & base                                     */
 /* ──────────────────────────────────────────────── */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
   height: 100%;
+  color-scheme: light; /* spriječi Android dark-mode */
 }
 
 body {
@@ -23,13 +22,11 @@ body {
 
 /* Fix background issues on mobile (iOS especially) */
 @media (max-width: 1024px) {
-  body {
-    background-attachment: scroll;
-  }
+  body { background-attachment: scroll; }
 }
 
 /* ──────────────────────────────────────────────── */
-/* SPLASH / Doors                                      */
+/* SPLASH / Doors                                   */
 /* ──────────────────────────────────────────────── */
 .splash {
   position: fixed;
@@ -70,30 +67,22 @@ body {
     transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(-105deg);
 }
 
-
-/* On very narrow screens → doors open less dramatically */
 @media (max-width: 500px) {
-  .doorOpenL {
-    transform: perspective(1000px) rotateY(-80deg);
-  }
-  .doorOpenR {
-    transform: perspective(1000px) rotateY(80deg);
-  }
+  .doorOpenL { transform: perspective(1000px) rotateY(-80deg); }
+  .doorOpenR { transform: perspective(1000px) rotateY(80deg); }
 }
 
 /* ──────────────────────────────────────────────── */
-/* Main content – hidden until doors open             */
+/* Main content – hidden until doors open           */
 /* ──────────────────────────────────────────────── */
 .form-container {
   position: relative;
   z-index: 10;
-
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: clamp(16px, 5vw, 48px) clamp(12px, 4vw, 32px);
 
   opacity: 0;
@@ -111,7 +100,7 @@ body.opened .form-container {
 }
 
 /* ──────────────────────────────────────────────── */
-/* Card / Invitation content                           */
+/* Card / Invitation content                         */
 /* ──────────────────────────────────────────────── */
 .content {
   position: relative;
@@ -121,7 +110,7 @@ body.opened .form-container {
   margin: 0 auto;
   border-radius: 24px;
   background: transparent;
-  isolation: isolate;   /* contains ::before pseudo-element */
+  isolation: isolate;
 }
 
 .content::before {
@@ -135,26 +124,21 @@ body.opened .form-container {
   background-color: transparent;
 }
 
-/* Text content layers */
-.content > * {
-  position: relative;
-  z-index: 1;
-}
+.content > * { position: relative; z-index: 1; }
 
 /* ──────────────────────────────────────────────── */
-/* Invitation text                                     */
+/* Invitation text                                   */
 /* ──────────────────────────────────────────────── */
-.invitation-text {
-  text-align: center;
-}
+.invitation-text { text-align: center; }
 
 .invitation-text p {
-  font-size: clamp(17px, 2.1vw, 21.5px);
-  line-height: 1.72;
-  color: rgba(18, 18, 18, 0.94);
+  font-size: clamp(19px, 2.4vw, 22px);   /* ↑ veći base */
+  line-height: 1.75;
+  color: rgba(18, 18, 18, 0.96);        /* forsiraj crnu */
   text-shadow: 0 1px 1px rgba(255,255,255,0.6);
   max-width: 560px;
   margin: 0 auto 1.4em;
+  font-weight: 500;
 }
 
 .invitation-text strong {
@@ -163,7 +147,7 @@ body.opened .form-container {
 }
 
 /* ──────────────────────────────────────────────── */
-/* RSVP section                                        */
+/* RSVP section                                      */
 /* ──────────────────────────────────────────────── */
 .rsvp {
   margin-top: 1.8rem;
@@ -175,9 +159,9 @@ body.opened .form-container {
 
 .rsvp h2 {
   font-family: "Great Vibes", cursive;
-  font-size: clamp(2.4rem, 6.5vw, 3.4rem);
+  font-size: clamp(2.6rem, 7vw, 3.6rem);  /* ↑ veći naslov */
   font-weight: 400;
-  color: rgba(24, 24, 24, 0.93);
+  color: rgba(24, 24, 24, 0.95);
   margin: 1.2rem 0 1.1rem;
   letter-spacing: 0.4px;
 }
@@ -185,139 +169,64 @@ body.opened .form-container {
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1.2rem;
 }
 
 label {
-  font-size: clamp(15.5px, 2vw, 17.5px);
-  color: rgba(30, 30, 30, 0.88);
+  font-size: 17.5px;
+  color: rgba(30, 30, 30, 0.9);
   text-align: left;
-  margin-bottom: 0.25rem;
 }
 
 input, textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   border-radius: 12px;
   border: 1px solid rgba(50,50,50,0.22);
   background: transparent;
   backdrop-filter: blur(4px);
-  font-size: clamp(15.5px, 2vw, 17.5px);
+  font-size: 17px;          /* ≥16px (iOS zoom fix) */
   color: #111;
   box-shadow: 0 5px 18px rgba(0,0,0,0.07);
-  transition: all 0.2s ease;
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  border-color: rgba(40,80,70,0.5);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-}
-
-textarea {
-  min-height: 110px;
-  resize: vertical;
-}
+textarea { min-height: 120px; }
 
 button {
   align-self: center;
-  margin-top: 0.8rem;
-  padding: 0.9rem 2.2rem;
-  border: none;
+  margin-top: 1rem;
+  padding: 1rem 2.4rem;
   border-radius: 999px;
-  background: rgba(34, 68, 62, 0.88);
-  color: white;
-  font-size: 1.05rem;
+  background: rgba(34, 68, 62, 0.9);
+  color: #fff;
+  font-size: 1.1rem;       /* ↑ veći gumb */
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-  transition: all 0.18s ease;
-}
-
-button:hover {
-  background: rgba(34, 68, 62, 0.96);
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.26);
-}
-
-button:active {
-  transform: translateY(0);
 }
 
 /* ──────────────────────────────────────────────── */
-/* Responsive adjustments                              */
+/* Responsive adjustments                            */
 /* ──────────────────────────────────────────────── */
-
-/* Tablets & smaller laptops */
-@media (max-width: 880px) {
-  .content {
-    width: min(94vw, 720px);
-    padding: clamp(24px, 5.5vw, 42px);
-  }
-}
-
-/* Phones – most common range */
 @media (max-width: 600px) {
-  .form-container {
-    align-items: flex-start;
-    padding: clamp(16px, 5vw, 32px) clamp(12px, 4vw, 24px);
-  }
-
-  .content {
-    width: 100%;
-    padding: 1.5rem;
-    border-radius: 20px;
-  }
-
-  .content::before {
-    inset: -8px;
-    border-radius: 24px;
-    filter: blur(2.2px);
-  }
+  .form-container { align-items: flex-start; }
 
   .invitation-text p {
-    font-size: 17.5px;
-    line-height: 1.68;
-    max-width: none;
-    padding: 0 6px;
+    font-size: 20px;       /* ↑ znatno veći na mobitelu */
+    line-height: 1.7;
+    font-weight: 600;
   }
 
-  .rsvp h2 {
-    font-size: 2.8rem;
-    margin: 1rem 0 0.9rem;
-  }
+  .rsvp h2 { font-size: 3rem; }
 
-  button {
-    width: 100%;
-    padding: 1rem 1.5rem;
-  }
+  label { font-size: 17px; }
+
+  input, textarea, button { font-size: 17px; }
+
+  button { width: 100%; }
 }
 
 /* Very small phones */
 @media (max-width: 380px) {
-  .invitation-text p {
-    font-size: 16.5px;
-    line-height: 1.62;
-  }
-
-  .rsvp h2 {
-    font-size: 2.4rem;
-  }
-
-  input, textarea, button {
-    font-size: 16px;
-  }
-}
-
-/* Landscape phones & very short screens */
-@media (max-height: 540px) and (orientation: landscape) {
-  .form-container {
-    justify-content: flex-start;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  .content {
-    margin-top: 1rem;
-  }
+  .invitation-text p { font-size: 19px; }
+  .rsvp h2 { font-size: 2.6rem; }
 }
