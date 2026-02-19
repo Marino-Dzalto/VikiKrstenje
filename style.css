@@ -3,6 +3,14 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  color-scheme: only light;
+
+  /* ══ POZADINSKA SLIKA NA html ELEMENTU ══
+     Ovo je jedini način koji garantirano radi na
+     iOS Safari, iPhone, Android Chrome bez skakanja.
+     html element ne scrolla – page scrolls unutar njega. */
+  background: url("Pozivnica.png") center center / cover no-repeat fixed;
+  min-height: 100%;
 }
 
 *,
@@ -11,52 +19,20 @@ html {
   box-sizing: border-box;
 }
 
-:root {
-  color-scheme: light only;
-}
-
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 body {
   min-height: 100dvh;
+  /* body mora biti proziran da se vidi html pozadina */
+  background: transparent;
   font-family: "Cormorant Garamond", Georgia, serif;
   color: #111;
-  position: relative;
-}
-
-/* ══════════════════════════════════════════════════
-   FIKSNA POZADINA – div koji JS drži na ekranu
-   Ovo je najpouzdanija metoda za iOS Safari i Android Chrome
-   ══════════════════════════════════════════════════ */
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background: url("Pozivnica.png") center center / cover no-repeat;
-  /* NE koristimo transform ili will-change ovdje –
-     JS će postaviti visinu dinamički */
-  pointer-events: none;
-}
-
-/* Lagani overlay za čitljivost */
-#bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: rgba(255, 255, 255, 0.06);
-  pointer-events: none;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ══════════════════════════════════════════════════
@@ -150,7 +126,7 @@ body.opened .form-container {
   font-size: clamp(19px, 2.4vw, 22px);
   line-height: 1.8;
   font-weight: 600;
-  color: rgba(10, 10, 10, 0.98);
+  color: #0a0a0a;
   max-width: 620px;
   margin: 0 auto 1.35em;
   text-shadow:
@@ -159,6 +135,11 @@ body.opened .form-container {
     1px 0 0 rgba(255,255,255,0.75),
     -1px 0 0 rgba(255,255,255,0.75),
     0 2px 10px rgba(0,0,0,0.18);
+}
+
+.invitation-text strong {
+  color: #000;
+  font-weight: 700;
 }
 
 /* ══════════════════════════════════════════════════
@@ -177,7 +158,7 @@ body.opened .form-container {
   font-family: "Great Vibes", cursive;
   font-size: clamp(2.7rem, 7vw, 3.8rem);
   font-weight: 400;
-  color: rgba(10, 10, 10, 0.98);
+  color: #0a0a0a;
   margin: 1.2rem 0 1.1rem;
   text-shadow:
     0 1px 0 rgba(255,255,255,0.75),
@@ -197,7 +178,7 @@ form {
 label {
   font-size: 18px;
   font-weight: 700;
-  color: rgba(10, 10, 10, 0.98);
+  color: #0a0a0a;
   text-shadow:
     0 1px 0 rgba(255,255,255,0.75),
     0 -1px 0 rgba(255,255,255,0.75),
@@ -212,8 +193,8 @@ textarea {
   border-radius: 14px;
   border: 1.5px solid rgba(40,40,40,0.28);
   background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   font-size: 18px;
   font-family: "Cormorant Garamond", Georgia, serif;
   color: #111;
@@ -246,21 +227,15 @@ button[type="submit"] {
   font-weight: 700;
   letter-spacing: 0.4px;
   cursor: pointer;
+  font-family: "Cormorant Garamond", Georgia, serif;
   box-shadow: 0 14px 30px rgba(0,0,0,0.2);
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease;
   -webkit-appearance: none;
   appearance: none;
-  font-family: "Cormorant Garamond", Georgia, serif;
-}
-
-button[type="submit"]:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.24);
-  background: rgba(34,68,62,0.98);
 }
 
 button[type="submit"]:active {
-  transform: translateY(0);
+  transform: translateY(1px);
 }
 
 /* ══════════════════════════════════════════════════
@@ -337,15 +312,3 @@ button:disabled {
   .rsvp h2           { font-size: 3.2rem; }
   label              { font-size: 19px; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
