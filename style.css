@@ -25,32 +25,66 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ══ SPLASH / Vrata ══ */
+/* ══════════════════════════════════════════════════
+   SPLASH / Vrata
+   ══════════════════════════════════════════════════ */
 .splash {
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
+  background: transparent;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 .doorImage {
   width: 50%;
   height: 100%;
-  object-fit: cover;
+  object-fit: inherit;
+  transform-origin: left top;
+  transition: all 2s ease-in-out;
   position: fixed;
-  top: 0; left: 0;
-  transition: transform 2s ease-in-out;
+  top: 0;
+  left: 0;
 }
 
-.doorImageLEFT { transform-origin: left top;  z-index: 2; }
-.doorImageRIGHT { transform-origin: right top; left: 50%; z-index: 1; }
+.doorImageLEFT {
+  transform-origin: left top;
+  z-index: 2;
+}
 
-.doorOpenL { transform: perspective(1200px) rotateY(-105deg); }
-.doorOpenR { transform: perspective(1200px) rotateY(105deg); }
+.doorImageRIGHT {
+  transform-origin: right top;
+  left: 50%;
+  z-index: 1;
+}
 
+.doorOpenR {
+  transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(105deg);
+}
+
+.doorOpenL {
+  transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(-105deg);
+}
+
+/* desktop smjer */
+.doorOpenL {
+  transform: rotateY(-105deg);
+}
+
+.doorOpenR {
+  transform: rotateY(105deg);
+}
+
+/* mobitel: manji kut za ljepši efekt */
 @media (max-width: 600px) {
-  .doorOpenL { transform: perspective(900px) rotateY(-85deg) !important; }
-  .doorOpenR { transform: perspective(900px) rotateY(85deg) !important; }
+  .doorOpenL {
+    transform: rotateY(-85deg) !important;
+  }
+  .doorOpenR {
+    transform: rotateY(85deg) !important;
+  }
 }
 
 /* ══ WRAPPER – sve stane u 100dvh, bez scrolla ══ */
