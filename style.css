@@ -58,7 +58,7 @@ body {
 }
 
 .doorOpenR {
-  transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(-105deg);
+  transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(105deg);
 }
 
 .doorOpenL {
@@ -66,7 +66,7 @@ body {
 }
 
 @media (max-width: 500px) {
-  .doorOpenL { transform: perspective(1000px) rotateY(-80deg); }
+  .doorOpenL { transform: perspective(1000px) rotateY(80deg); }
   .doorOpenR { transform: perspective(1000px) rotateY(80deg); }
 }
 
