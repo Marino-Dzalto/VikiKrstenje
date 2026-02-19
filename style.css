@@ -9,8 +9,20 @@ html { -webkit-text-size-adjust: 100%; }
 
 :root { color-scheme: light; }
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+}
 
+.form-container {
+  min-height: 100dvh;                      /* ← change from 100vh to 100dvh */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(28px, 6vw, 64px) clamp(14px, 5vw, 32px);
+  position: relative;
+  z-index: 10;
+}
 body {
   margin: 0;
   font-family: "Cormorant Garamond", Georgia, serif;
