@@ -1,134 +1,129 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-  <title>Pozivnica na krštenje</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="text/javascript">
-    emailjs.init("hzxSw9tpw41OLW_Fs");
-  </script>
-
-  <style>
-    .status-msg {
-      margin-top: 1rem;
-      padding: 0.8rem 1.2rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      text-align: center;
-      display: none;
-    }
-    .status-msg.success {
-      background: rgba(34, 68, 62, 0.12);
-      color: rgba(34, 68, 62, 1);
-      border: 1px solid rgba(34, 68, 62, 0.3);
-    }
-    .status-msg.error {
-      background: rgba(180, 40, 40, 0.1);
-      color: rgba(160, 30, 30, 1);
-      border: 1px solid rgba(180, 40, 40, 0.3);
-    }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Pozivnica na krštenje</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // ⚠️ ZAMIJENITE s vašim EmailJS Public Key-em
+        emailjs.init("hzxSw9tpw41OLW_Fs");
+    </script>
+    <style>
+        .status-msg {
+            margin-top: 1rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            text-align: center;
+            display: none;
+        }
+        .status-msg.success {
+            background: rgba(34, 68, 62, 0.12);
+            color: rgba(34, 68, 62, 1);
+            border: 1px solid rgba(34, 68, 62, 0.3);
+        }
+        .status-msg.error {
+            background: rgba(180, 40, 40, 0.1);
+            color: rgba(160, 30, 30, 1);
+            border: 1px solid rgba(180, 40, 40, 0.3);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
-
 <body>
-  <!-- Vrata / animacija -->
-  <div class="splash">
+
+<div class="splash">
     <img src="ilutracija crkva LEFT2.png" class="doorImage doorImageLEFT" alt="">
     <img src="ilustracija crkva RIGHT2.png" class="doorImage doorImageRIGHT" alt="">
-  </div>
+</div>
 
-  <!-- Sadržaj -->
-  <div class="form-container">
+<div class="form-container">
     <main class="content">
-      <section class="invitation-text">
-        <p>
-          S radošću vas pozivamo da svojim dolaskom uveličate<br>
-          sveto krštenje našeg <strong>Viktora</strong>,<br><br>
+        <section class="invitation-text">
+            <p>
+                S radošću vas pozivamo da svojim dolaskom uveličate<br>
+                sveto krštenje našeg <strong>Viktora</strong>,<br><br>
 
-          koje će se održati <strong>11.04. u 12 sati</strong><br>
-          u crkvi <strong>Sv. Ivana Krstitelja (Nova Ves 64)</strong>.<br><br>
+                koje će se održati <strong>11.04. u 12 sati</strong><br>
+                u crkvi <strong>Sv. Ivana Krstitelja (Nova Ves 64)</strong>.<br><br>
 
-          Nakon obreda, veselimo se zajedničkom druženju<br>
-          u restoranu <strong>C6 (Capraška ulica 6c) od 13:00h</strong><br><br>
+                Nakon obreda, veselimo se zajedničkom druženju<br>
+                u restoranu <strong>C6 (Capraška ulica 6c) od 13:00h</strong><br><br>
 
-          Ljubazno Vas molimo da svoj dolazak potvrdite do <strong>15.03.2026.</strong><br><br>
-          Radujemo se vašem dolasku!<br>
-          <strong>Nika i Adrian</strong>
-        </p>
-      </section>
+                Ljubazno Vas molimo da svoj dolazak potvrdite do <strong>15.03.2026.</strong><br><br>
+                Radujemo se vašem dolasku!<br>
+                <strong>Nika i Adrian</strong>
+            </p>
+        </section>
 
-      <section class="rsvp">
-        <h2>Potvrda dolaska</h2>
+        <section class="rsvp">
+            <h2>Potvrda dolaska</h2>
+            <form id="rsvpForm">
+                <label>
+                    Ime i prezime *
+                    <input type="text" name="ime_prezime" required placeholder="Ime i Prezime">
+                </label>
 
-        <form id="rsvpForm">
-          <label>
-            Ime i prezime *
-            <input type="text" name="ime_prezime" required placeholder="Ime i Prezime">
-          </label>
+                <label>
+                    Broj osoba koje dolaze *
+                    <input type="number" name="broj_osoba" min="1" required placeholder="npr. 2">
+                </label>
 
-          <label>
-            Broj osoba koje dolaze *
-            <input type="number" name="broj_osoba" min="1" required placeholder="npr. 2">
-          </label>
+                <label>
+                    Poruka (opcionalno)
+                    <textarea name="poruka" rows="4" placeholder="Vaša poruka..."></textarea>
+                </label>
 
-          <label>
-            Poruka (opcionalno)
-            <textarea name="poruka" rows="4" placeholder="Vaša poruka..."></textarea>
-          </label>
-
-          <button type="submit" id="submitBtn">Potvrdi dolazak</button>
-          <div class="status-msg" id="statusMsg"></div>
-        </form>
-      </section>
+                <button type="submit" id="submitBtn">Potvrdi dolazak</button>
+                <div class="status-msg" id="statusMsg"></div>
+            </form>
+        </section>
     </main>
-  </div>
+</div>
 
-  <script src="doorAnimation.js"></script>
-
-  <script>
+<script src="doorAnimation.js"></script>
+<script>
     document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+        e.preventDefault();
 
-      const btn = document.getElementById('submitBtn');
-      const statusMsg = document.getElementById('statusMsg');
-      const form = e.target;
+        const btn = document.getElementById('submitBtn');
+        const statusMsg = document.getElementById('statusMsg');
+        const form = e.target;
 
-      btn.disabled = true;
-      btn.textContent = 'Šaljem...';
-      statusMsg.style.display = 'none';
+        btn.disabled = true;
+        btn.textContent = 'Šaljem...';
+        statusMsg.style.display = 'none';
 
-      const templateParams = {
-        ime_prezime: form.ime_prezime.value,
-        broj_osoba:  form.broj_osoba.value,
-        poruka:      form.poruka.value || '(bez poruke)'
-      };
+        const templateParams = {
+            ime_prezime: form.ime_prezime.value,
+            broj_osoba:  form.broj_osoba.value,
+            poruka:      form.poruka.value || '(bez poruke)'
+        };
 
-      emailjs.send("service_2dkuyzr", "template_a3z5zpg", templateParams)
-        .then(function() {
-          statusMsg.className = 'status-msg success';
-          statusMsg.textContent = '✓ Hvala! Vaš dolazak je potvrđen. Radujemo se vašem dolasku!';
-          statusMsg.style.display = 'block';
-          form.reset();
-          btn.textContent = 'Potvrđeno ✓';
-        })
-        .catch(function(error) {
-          statusMsg.className = 'status-msg error';
-          statusMsg.textContent = '✗ Došlo je do greške. Molimo pokušajte ponovo ili nas kontaktirajte direktno.';
-          statusMsg.style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Potvrdi dolazak';
-          console.error('EmailJS error:', error);
-        });
+        // ⚠️ ZAMIJENITE "VAŠ_SERVICE_ID" i "VAŠ_TEMPLATE_ID" s vašim vrijednostima
+        emailjs.send("service_2dkuyzr", "template_a3z5zpg", templateParams)
+            .then(function() {
+                statusMsg.className = 'status-msg success';
+                statusMsg.textContent = '✓ Hvala! Vaš dolazak je potvrđen. Radujemo se vašem dolasku!';
+                statusMsg.style.display = 'block';
+                form.reset();
+                btn.textContent = 'Potvrđeno ✓';
+            })
+            .catch(function(error) {
+                statusMsg.className = 'status-msg error';
+                statusMsg.textContent = '✗ Došlo je do greške. Molimo pokušajte ponovo ili nas kontaktirajte direktno.';
+                statusMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Potvrdi dolazak';
+                console.error('EmailJS error:', error);
+            });
     });
-  </script>
+</script>
 </body>
 </html>
