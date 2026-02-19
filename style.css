@@ -209,22 +209,33 @@ button {
   .form-container { align-items: flex-start; }
 
   .invitation-text p {
-    font-size: 20px;       /* ↑ znatno veći na mobitelu */
-    line-height: 1.7;
+    font-size: 23px;
+    line-height: 1.85;
     font-weight: 600;
   }
 
-  .rsvp h2 { font-size: 3rem; }
+  .rsvp h2 { font-size: 3.5rem; }
 
-  label { font-size: 17px; }
+  label {
+    font-size: 20px;
+    font-weight: 600;
+  }
 
-  input, textarea, button { font-size: 17px; }
+  input, textarea {
+    font-size: 18px;
+    padding: 1rem 1.1rem;
+  }
 
-  button { width: 100%; }
+  button {
+    font-size: 1.2rem;
+    padding: 1.1rem 2.6rem;
+    width: 100%;
+  }
 }
 
 /* Very small phones */
 @media (max-width: 380px) {
-  .invitation-text p { font-size: 19px; }
-  .rsvp h2 { font-size: 2.6rem; }
+  .invitation-text p { font-size: 21px; }
+  .rsvp h2 { font-size: 3rem; }
+  label { font-size: 18px; }
 }
