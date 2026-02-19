@@ -13,10 +13,12 @@ html, body { height: 100%; }
 
 body {
   margin: 0;
-  min-height: 100vh;
   font-family: "Cormorant Garamond", Georgia, serif;
-  background: url("Pozivnica.png") center / cover no-repeat fixed;
   color: #111;
+  background: url("Pozivnica.png") center / cover no-repeat;
+  background-attachment: scroll;           /* ← important change */
+  min-height: 100dvh;                      /* use dvh instead of vh */
+  position: relative;                      /* helps contain children */
 }
 
 /* iOS/Android: fixed background zna štekati */
