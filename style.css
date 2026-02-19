@@ -140,28 +140,17 @@ body.opened .form-container {
     0  1px 0 rgba(255,255,255,0.75),
     0 -1px 0 rgba(255,255,255,0.75),
     1px 0  0 rgba(255,255,255,0.75),
-   -1px 0  0 rgba(255,255,255,0.75),
+    -1px 0  0 rgba(255,255,255,0.75),
     0  2px 10px rgba(0,0,0,0.18);
 }
 
-/* Safari dodatno pomaže */
-@supports (-webkit-text-stroke: 1px black) {
-  .invitation-text p {
-    -webkit-text-stroke: 0.25px rgba(255,255,255,0.55);
-  }
-}
-
-.invitation-text strong {
-  font-weight: 700;
-  color: #000;
-}
-
 /* ──────────────────────────────────────────────── */
-/* RSVP section                                     */
+/* RSVP                                             */
 /* ──────────────────────────────────────────────── */
 .rsvp {
-  margin-top: 1.8rem;
-  max-width: 620px;
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  max-width: 580px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -286,20 +275,26 @@ button:disabled { opacity: 0.6; cursor: not-allowed; }
 @media (max-width: 600px) {
   .form-container {
     align-items: flex-start;
-    padding: 34px 14px 56px;
+    padding: 28px 14px 48px; /* reduced top/bottom for more text space */
   }
 
   .content {
     width: 100%;
-    padding: 18px 12px;
+    padding: 14px 12px; /* slightly reduced for more screen real estate */
   }
 
   /* ključ: na mobitelu ide još veći font */
   .invitation-text p {
-    font-size: 26px;       /* << VEĆE */
-    line-height: 2.0;
+    font-size: 32px;       /* << MUCH BIGGER */
+    line-height: 2.1;      /* better spacing */
     font-weight: 700;
     max-width: 100%;
+    text-shadow:           /* stronger outline for visibility */
+      0  1px 2px rgba(255,255,255,0.85),
+      0 -1px 2px rgba(255,255,255,0.85),
+      1px 0  2px rgba(255,255,255,0.85),
+     -1px 0  2px rgba(255,255,255,0.85),
+      0  3px 12px rgba(0,0,0,0.22);
   }
 
   .rsvp h2 {
@@ -321,7 +316,7 @@ button:disabled { opacity: 0.6; cursor: not-allowed; }
 }
 
 @media (max-width: 380px) {
-  .invitation-text p { font-size: 23px; }
+  .invitation-text p { font-size: 28px; } /* scaled down but still large */
   .rsvp h2 { font-size: 3.2rem; }
   label { font-size: 19px; }
 }
