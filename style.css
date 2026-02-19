@@ -320,7 +320,7 @@ button[type="submit"] {
   margin-top: 1rem;
   padding: 0.9rem 1.2rem;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 1rem; /* bilo je 3rem -> preveliko */
   text-align: center;
   display: none;
   color: #111111 !important;
@@ -337,40 +337,3 @@ button[type="submit"] {
 }
 
 button:disabled { opacity: 0.6; cursor: not-allowed; }
-
-/* ──────────────────────────────────────────────── */
-/* Mobile typography – veći i čitljiviji font       */
-/* ──────────────────────────────────────────────── */
-@media (max-width: 600px) {
-  .invitation-text p {
-    font-size: 24px;     /* ↑ još malo veći */
-    line-height: 1.9;
-    font-weight: 600;
-  }
-
-  .rsvp h2 {
-    font-size: 3.6rem;  /* naslov veći na mobitelu */
-  }
-
-  label {
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  input, textarea {
-    font-size: 18px;    /* sprječava iOS zoom */
-    padding: 1.1rem 1.2rem;
-  }
-
-  button {
-    font-size: 1.25rem;
-    padding: 1.2rem 2.8rem;
-    width: 100%;
-  }
-}
-
-@media (max-width: 380px) {
-  .invitation-text p {
-    font-size: 22px;   /* za baš male ekrane */
-  }
-}
