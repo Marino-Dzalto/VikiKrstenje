@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <title>Pozivnica na krštenje</title>
     <link rel="stylesheet" href="style.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // ⚠️ ZAMIJENITE s vašim EmailJS Public Key-em
+        emailjs.init("hzxSw9tpw41OLW_Fs");
+    </script>
+    <style>
+        .status-msg {
+            margin-top: 1rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            text-align: center;
+            display: none;
+        }
+        .status-msg.success {
+            background: rgba(34, 68, 62, 0.12);
+            color: rgba(34, 68, 62, 1);
+            border: 1px solid rgba(34, 68, 62, 0.3);
+        }
+        .status-msg.error {
+            background: rgba(180, 40, 40, 0.1);
+            color: rgba(160, 30, 30, 1);
+            border: 1px solid rgba(180, 40, 40, 0.3);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,28 +63,66 @@
 
         <section class="rsvp">
             <h2>Potvrda dolaska</h2>
-            <form>
+            <form id="rsvpForm">
                 <label>
                     Ime i prezime *
-                    <input type="text" required>
+                    <input type="text" name="ime_prezime" required placeholder="Ime i Prezime">
                 </label>
 
                 <label>
                     Broj osoba koje dolaze *
-                    <input type="number" min="1" required>
+                    <input type="number" name="broj_osoba" min="1" required placeholder="npr. 2">
                 </label>
 
                 <label>
                     Poruka (opcionalno)
-                    <textarea rows="4"></textarea>
+                    <textarea name="poruka" rows="4" placeholder="Vaša poruka..."></textarea>
                 </label>
 
-                <button type="submit">Potvrdi dolazak</button>
+                <button type="submit" id="submitBtn">Potvrdi dolazak</button>
+                <div class="status-msg" id="statusMsg"></div>
             </form>
         </section>
     </main>
 </div>
 
-    <script src="doorAnimation.js"></script>
+<script src="doorAnimation.js"></script>
+<script>
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('submitBtn');
+        const statusMsg = document.getElementById('statusMsg');
+        const form = e.target;
+
+        btn.disabled = true;
+        btn.textContent = 'Šaljem...';
+        statusMsg.style.display = 'none';
+
+        const templateParams = {
+            ime_prezime: form.ime_prezime.value,
+            broj_osoba:  form.broj_osoba.value,
+            poruka:      form.poruka.value || '(bez poruke)'
+        };
+
+        // ⚠️ ZAMIJENITE "VAŠ_SERVICE_ID" i "VAŠ_TEMPLATE_ID" s vašim vrijednostima
+        emailjs.send("service_2dkuyzr", "template_a3z5zpg", templateParams)
+            .then(function() {
+                statusMsg.className = 'status-msg success';
+                statusMsg.textContent = '✓ Hvala! Vaš dolazak je potvrđen. Radujemo se vašem dolasku!';
+                statusMsg.style.display = 'block';
+                form.reset();
+                btn.textContent = 'Potvrđeno ✓';
+            })
+            .catch(function(error) {
+                statusMsg.className = 'status-msg error';
+                statusMsg.textContent = '✗ Došlo je do greške. Molimo pokušajte ponovo ili nas kontaktirajte direktno.';
+                statusMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Potvrdi dolazak';
+                console.error('EmailJS error:', error);
+            });
+    });
+</script>
 </body>
 </html>
