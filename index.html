@@ -8,9 +8,7 @@
     <title>Pozivnica na krštenje</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        emailjs.init("hzxSw9tpw41OLW_Fs");
-    </script>
+    <script type="text/javascript">emailjs.init("hzxSw9tpw41OLW_Fs");</script>
 </head>
 <body>
 
@@ -43,7 +41,7 @@
             <form id="rsvpForm">
                 <label>
                     Popis osoba s kojima dolazite
-                    <textarea name="poruka" rows="4" placeholder=""></textarea>
+                    <textarea name="poruka" rows="4" placeholder="npr. Marko Marković, Ana Marković"></textarea>
                 </label>
 
                 <button type="submit" id="submitBtn">Potvrdi dolazak</button>
@@ -62,14 +60,19 @@
         var statusMsg = document.getElementById('statusMsg');
         var form = e.target;
 
+        if (!form.poruka.value.trim()) {
+            statusMsg.className = 'status-msg error';
+            statusMsg.textContent = 'Molimo unesite popis osoba koje dolaze.';
+            statusMsg.style.display = 'block';
+            return;
+        }
+
         btn.disabled = true;
         btn.textContent = 'Šaljem...';
         statusMsg.style.display = 'none';
 
         var templateParams = {
-            ime_prezime: form.ime_prezime.value,
-            broj_osoba:  form.broj_osoba.value,
-            poruka:      form.poruka.value || '(bez poruke)'
+            poruka: form.poruka.value.trim()
         };
 
         emailjs.send("service_2dkuyzr", "template_a3z5zpg", templateParams)
